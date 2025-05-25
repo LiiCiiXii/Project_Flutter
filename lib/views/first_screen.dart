@@ -1,22 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_project/views/on_board_screen.dart';
 
-void main() {
-  runApp(const MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: const WelcomeScreen(),
-    );
-  }
-}
-
 class WelcomeScreen extends StatelessWidget {
   const WelcomeScreen({super.key});
 
@@ -28,8 +12,16 @@ class WelcomeScreen extends StatelessWidget {
           // Background image
           SizedBox.expand(
             child: Image.asset(
-              'assets/images/welcome_image.avif', // <-- Make sure to add this image in assets and pubspec.yaml
+              'assets/images/welcome_image.avif',
               fit: BoxFit.cover,
+              errorBuilder: (context, error, stackTrace) {
+                return Container(
+                  color: Colors.grey.shade300,
+                  child: const Center(
+                    child: Icon(Icons.image_not_supported, size: 50),
+                  ),
+                );
+              },
             ),
           ),
 
@@ -41,7 +33,7 @@ class WelcomeScreen extends StatelessWidget {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text(
+                const Text(
                   'Welcome to GemStore!',
                   style: TextStyle(
                     fontSize: 24,
@@ -49,12 +41,12 @@ class WelcomeScreen extends StatelessWidget {
                     color: Colors.white,
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'The home for a fashionista',
                   style: TextStyle(fontSize: 16, color: Colors.white70),
                 ),
-                SizedBox(height: 30),
+                const SizedBox(height: 30),
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.white,
